@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mira Zhang | HR Portfolio</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --bg3: #1a1a2e;
+  --accent: #6c63ff;
+  --accent2: #00d2ff;
+  --accent3: #ff6b6b;
+  --text: #e8e8f0;
+  --text2: #9898b0;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --glow: 0 0 40px rgba(108,99,255,0.15);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+::selection { background: var(--accent); color: #fff; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  padding: 16px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+nav.scrolled { padding: 10px 40px; box-shadow: var(--glow); }
+.nav-logo {
+  font-size: 18px; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: var(--text2); text-decoration: none; font-size: 13px;
+  font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--accent2); }
+
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  position: relative;
+  padding: 120px 40px 80px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 50%, rgba(108,99,255,0.08), transparent),
+    radial-gradient(ellipse 500px 300px at 80% 30%, rgba(0,210,255,0.06), transparent),
+    radial-gradient(ellipse 400px 400px at 50% 80%, rgba(255,107,107,0.04), transparent);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+}
+.hero-content { position: relative; text-align: center; max-width: 800px; }
+.hero-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border: 1px solid var(--accent);
+  border-radius: 50px;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: fadeInUp 0.8s ease;
+}
+.hero h1 {
+  font-size: clamp(48px, 8vw, 80px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: 18px; color: var(--text2);
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+.hero-tags {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+.hero-tag {
+  padding: 8px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 13px;
+  color: var(--text2);
+  transition: all 0.3s;
+  cursor: default;
+}
+.hero-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(108,99,255,0.2);
+}
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+.hero-scroll span {
+  display: block; width: 20px; height: 32px;
+  border: 2px solid var(--text2); border-radius: 10px;
+  position: relative;
+}
+.hero-scroll span::after {
+  content: ''; width: 4px; height: 8px;
+  background: var(--accent); border-radius: 2px;
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  animation: scrollDot 2s infinite;
+}
+
+section {
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  margin-bottom: 48px;
+}
+.section-title .gradient {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.flip-card {
+  perspective: 1000px;
+  height: 420px;
+  cursor: pointer;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  overflow-y: auto;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(0,210,255,0.05));
+}
+.flip-hint {
+  position: absolute; bottom: 16px; right: 20px;
+  font-size: 11px; color: var(--text2);
+  opacity: 0.6;
+}
+.about-avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px; font-weight: 700; color: #fff;
+  margin-bottom: 24px;
+}
+.about-name { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.about-role { font-size: 14px; color: var(--accent); margin-bottom: 20px; }
+.about-info { list-style: none; }
+.about-info li {
+  font-size: 14px; color: var(--text2);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; gap: 12px;
+}
+.about-info li span:first-child { color: var(--text); min-width: 60px; }
+
+.traits-title {
+  font-size: 18px; font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--accent2);
+}
+.trait-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.trait-item:hover { border-color: var(--accent); transform: translateX(4px); }
+.trait-header {
+  display: flex; align-items: center; gap: 12px;
+}
+.trait-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.trait-icon.learn { background: rgba(108,99,255,0.15); }
+.trait-icon.multi { background: rgba(0,210,255,0.15); }
+.trait-icon.think { background: rgba(255,107,107,0.15); }
+.trait-icon.empathy { background: rgba(255,193,7,0.15); }
+.trait-name { font-size: 15px; font-weight: 600; }
+.trait-brief { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.trait-arrow {
+  margin-left: auto; font-size: 12px; color: var(--text2);
+  transition: transform 0.3s;
+}
+.trait-item.open .trait-arrow { transform: rotate(180deg); }
+.trait-detail {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  font-size: 13px; color: var(--text2); line-height: 1.8;
+}
+.trait-item.open .trait-detail {
+  max-height: 400px;
+  padding-top: 14px;
+}
+.trait-detail .case-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  background: rgba(108,99,255,0.15);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.timeline-section { position: relative; }
+.timeline-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  position: relative;
+}
+.timeline-col { position: relative; }
+.timeline-col-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid;
+}
+.timeline-col-title.intern { color: var(--accent); border-color: var(--accent); }
+.timeline-col-title.project { color: var(--accent2); border-color: var(--accent2); }
+.timeline-line {
+  position: absolute;
+  left: 18px;
+  top: 60px;
+  bottom: 0;
+  width: 2px;
+}
+.timeline-line.intern { background: linear-gradient(to bottom, var(--accent), rgba(108,99,255,0.2)); }
+.timeline-line.project { background: linear-gradient(to bottom, var(--accent2), rgba(0,210,255,0.2)); }
+.tl-item {
+  position: relative;
+  margin-bottom: 32px;
+  animation: fadeInUp 0.6s ease both;
+}
+.tl-dot {
+  position: absolute; left: -30px; top: 8px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  background: var(--bg);
+  z-index: 2;
+  transition: all 0.3s;
+}
+.tl-item:hover .tl-dot {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+.tl-item.project-item .tl-dot {
+  border-color: var(--accent2);
+}
+.tl-item.project-item:hover .tl-dot {
+  background: var(--accent2);
+  box-shadow: 0 0 12px var(--accent2);
+}
+.tl-item.current .tl-dot {
+  border-color: var(--accent2);
+  background: var(--accent2);
+  box-shadow: 0 0 16px var(--accent2);
+}
+.tl-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.tl-card:hover {
+  border-color: var(--accent);
+  transform: translateX(6px);
+  box-shadow: var(--glow);
+}
+.tl-item.project-item .tl-card:hover {
+  border-color: var(--accent2);
+}
+.tl-top {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.tl-date {
+  font-size: 12px; color: var(--accent);
+  padding: 4px 12px;
+  background: rgba(108,99,255,0.1);
+  border-radius: 6px;
+  font-weight: 600;
+}
+.tl-item.project-item .tl-date {
+  color: var(--accent2);
+  background: rgba(0,210,255,0.1);
+}
+.tl-company { font-size: 18px; font-weight: 700; }
+.tl-role { font-size: 13px; color: var(--text2); }
+.tl-tags {
+  display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;
+}
+.tl-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  background: rgba(0,210,255,0.08);
+  border: 1px solid rgba(0,210,255,0.15);
+  border-radius: 4px;
+  color: var(--accent2);
+}
+.tl-expand-hint {
+  font-size: 11px; color: var(--text2); opacity: 0.5;
+  margin-top: 10px;
+}
+.tl-detail {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.tl-card.open .tl-detail { max-height: 2000px; }
+.tl-card.open .tl-expand-hint { display: none; }
+.tl-detail-inner {
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+.tl-detail-inner h4 {
+  font-size: 14px; font-weight: 600;
+  color: var(--accent2);
+  margin: 16px 0 8px;
+}
+.tl-detail-inner h4:first-child { margin-top: 0; }
+.tl-detail-inner ul {
+  list-style: none; padding: 0;
+}
+.tl-detail-inner li {
+  font-size: 13px; color: var(--text2);
+  padding: 5px 0 5px 16px;
+  position: relative;
+  line-height: 1.7;
+}
+.tl-detail-inner li::before {
+  content: '>';
+  position: absolute; left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+.tl-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.tl-metric {
+  background: rgba(108,99,255,0.06);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.tl-metric .num {
+  font-size: 24px; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.tl-metric .label { font-size: 11px; color: var(--text2); margin-top: 4px; }
+
+.anker-section {
+  background: linear-gradient(135deg, rgba(108,99,255,0.05), rgba(0,210,255,0.03));
+  border-radius: 24px;
+  padding: 60px 40px;
+  border: 1px solid var(--border);
+  margin: 0 40px;
+  max-width: 1200px;
+}
+.anker-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.stat-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+.stat-num {
+  font-size: 40px; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 13px; color: var(--text2);
+  margin-top: 8px;
+}
+.anker-phases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+.phase-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s;
+}
+.phase-card:hover { border-color: var(--accent); }
+.phase-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.phase-badge.p1 { background: rgba(108,99,255,0.15); color: var(--accent); }
+.phase-badge.p2 { background: rgba(0,210,255,0.15); color: var(--accent2); }
+.phase-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.phase-desc { font-size: 13px; color: var(--text2); line-height: 1.8; }
+.phase-desc strong { color: var(--text); }
+
+.workbench {
+  margin-top: 48px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.workbench h3 {
+  font-size: 18px; font-weight: 700;
+  margin-bottom: 8px;
+}
+.workbench .wb-subtitle {
+  font-size: 13px; color: var(--text2);
+  margin-bottom: 24px;
+}
+.wb-modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.wb-module {
+  background: rgba(108,99,255,0.06);
+  border: 1px solid rgba(108,99,255,0.2);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+.wb-module:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(108,99,255,0.2);
+}
+.wb-module.active {
+  border-color: var(--accent);
+  background: rgba(108,99,255,0.12);
+}
+.wb-module-icon { font-size: 28px; margin-bottom: 8px; }
+.wb-module-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.wb-module-desc { font-size: 11px; color: var(--text2); }
+.wb-detail-panel {
+  margin-top: 24px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  min-height: 120px;
+  display: none;
+}
+.wb-detail-panel.visible { display: block; }
+.wb-detail-panel h4 {
+  font-size: 16px; font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.wb-detail-panel p {
+  font-size: 13px; color: var(--text2);
+  line-height: 1.8;
+}
+.wb-detail-panel ul {
+  list-style: none; padding: 0;
+}
+.wb-detail-panel li {
+  font-size: 13px; color: var(--text2);
+  padding: 4px 0 4px 16px;
+  position: relative;
+}
+.wb-detail-panel li::before {
+  content: '>';
+  position: absolute; left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.skills-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 60px 40px;
+  margin: 0 40px;
+  max-width: 1200px;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.radar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.radar-chart {
+  width: 320px;
+  height: 320px;
+}
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.skill-category {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  transition: all 0.3s;
+}
+.skill-category:hover { border-color: var(--accent); }
+.skill-category-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--accent2);
+  margin-bottom: 12px;
+}
+.skill-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.skill-tag {
+  padding: 6px 14px;
+  background: rgba(108,99,255,0.1);
+  border: 1px solid rgba(108,99,255,0.2);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text);
+  transition: all 0.3s;
+}
+.skill-tag:hover {
+  background: rgba(108,99,255,0.2);
+  border-color: var(--accent);
+}
+
+.contact-section {
+  text-align: center;
+  padding: 100px 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.contact-links {
+  display: flex; justify-content: center; gap: 20px;
+  margin-top: 32px; flex-wrap: wrap;
+}
+.contact-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+.contact-link:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
+}
+.contact-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(108,99,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+
+footer {
+  text-align: center;
+  padding: 40px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text2);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+@keyframes scrollDot {
+  0% { opacity: 1; top: 6px; }
+  100% { opacity: 0; top: 18px; }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 11px; }
+  section { padding: 60px 20px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .flip-card { height: auto; min-height: 380px; }
+  .anker-section { margin: 0 20px; padding: 40px 20px; }
+  .anker-phases { grid-template-columns: 1fr; }
+  .timeline-container { grid-template-columns: 1fr; gap: 40px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .skills-section { margin: 0 20px; padding: 40px 20px; }
+  .wb-modules { grid-template-columns: repeat(2, 1fr); }
+  .anker-stats { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">Mira Zhang</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#anker">Anker</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Recruitment / HR</div>
+    <h1>Hi, I'm <span class="gradient">Mira</span></h1>
+    <p class="hero-sub">
+      应用心理学硕士 | 用数据驱动招聘，用AI重塑HR效能
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">招聘全流程闭环</span>
+      <span class="hero-tag">数据驱动决策</span>
+      <span class="hero-tag">AI工具应用</span>
+      <span class="hero-tag">体系搭建</span>
+      <span class="hero-tag">跨部门协同</span>
+      <span class="hero-tag">大型项目管理</span>
+    </div>
+  </div>
+  <div class="hero-scroll"><span></span></div>
+</section>
+
+<section id="about" class="reveal">
+  <div class="section-label">01 / About</div>
+  <div class="section-title">关于 <span class="gradient">我</span></div>
+  <div class="about-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="about-avatar">M</div>
+          <div class="about-name">张佩敏</div>
+          <div class="about-role">招聘实习生</div>
+          <ul class="about-info">
+            <li><span>学历</span><span>深圳大学 应用心理学 硕士（2026届）</span></li>
+            <li><span>本科</span><span>福建师范大学 应用心理学</span></li>
+            <li><span>电话</span><span>13691608718</span></li>
+            <li><span>邮箱</span><span>1146996927@qq.com</span></li>
+            <li><span>工具</span><span>SPSS / R / Python / 飞书多维表格 / AI工具</span></li>
+          </ul>
+          <div class="flip-hint">点击翻转 →</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="traits-title">个人特质</div>
+          <div class="trait-item" onclick="event.stopPropagation(); this.classList.toggle('open')">
+            <div class="trait-header">
+              <div class="trait-icon learn">🧠</div>
+              <div>
+                <div class="trait-name">快速学习</div>
+                <div class="trait-brief">AI赋能自学，从0掌握机器学习</div>
+              </div>
+              <div class="trait-arrow">▼</div>
+            </div>
+            <div class="trait-detail">
+              <span class="case-tag"># 毕业论文</span>
+              <p>对机器学习和新统计方法感兴趣，将其作为毕业论文的两个子研究。通过下载文献 + AI辅助学习，制定学习计划逐步跟练，最终独立完成所有学习内容和代码，顺利完成数据分析，目前正与导师撰写论文中。</p>
+            </div>
+          </div>
+          <div class="trait-item" onclick="event.stopPropagation(); this.classList.toggle('open')">
+            <div class="trait-header">
+              <div class="trait-icon multi">🔀</div>
+              <div>
+                <div class="trait-name">多线程并行</div>
+                <div class="trait-brief">影石实习 × 国社科项目 × 毕业论文同步推进</div>
+              </div>
+              <div class="trait-arrow">▼</div>
+            </div>
+            <div class="trait-detail">
+              <span class="case-tag"># 抗压能力</span>
+              <p>2024.11-2025.05期间，同时进行影石Insta360招聘实习、国家社科基金项目（老漂族研究）、以及硕士毕业论文准备，保持高质量交付，展现了出色的时间管理和抗压能力。</p>
+            </div>
+          </div>
+          <div class="trait-item" onclick="event.stopPropagation(); this.classList.toggle('open')">
+            <div class="trait-header">
+              <div class="trait-icon think">💡</div>
+              <div>
+                <div class="trait-name">主动思考</div>
+                <div class="trait-brief">不只是执行者，更是优化提案者</div>
+              </div>
+              <div class="trait-arrow">▼</div>
+            </div>
+            <div class="trait-detail">
+              <span class="case-tag"># 创新意识</span>
+              <p>在安克实习时，发现简历分配缺乏统一标准，主动提出"共建简历池"的优化方案；观察到候选人找房困难，提议建立内部同事+外部候选人的转租群。持续关注流程中的痛点并提出改进建议。</p>
+            </div>
+          </div>
+          <div class="trait-item" onclick="event.stopPropagation(); this.classList.toggle('open')">
+            <div class="trait-header">
+              <div class="trait-icon empathy"></div>
+              <div>
+                <div class="trait-name">共情沟通</div>
+                <div class="trait-brief">化解候选人情绪危机，推动offer闭环</div>
+              </div>
+              <div class="trait-arrow">▼</div>
+            </div>
+            <div class="trait-detail">
+              <span class="case-tag"># Insta360 校招</span>
+              <p><strong>背景：</strong>负责软件项目经理校招岗位的初步电话沟通时，一位人选接到电话后非常生气，表示前前后后在不同岗位面试了4轮，要挂断电话。</p>
+              <p style="margin-top:8px"><strong>处理：</strong>先共情安抚情绪，深入了解后发现核心问题不是"面试多轮"，而是不同HR分别对接、每次未说明原因就直接约面，让人选感到困惑。我在职权范围内给出解决方案——沟通压缩面试轮次，获得人选理解。随即同步mentor信息和处理方式做好预警。</p>
+              <p style="margin-top:8px"><strong>结果：</strong>该同学最终顺利走到Offer发放阶段。</p>
+            </div>
+          </div>
+          <div class="flip-hint">点击翻转 ←</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;">
+        <h3 style="font-size:20px;font-weight:700;margin-bottom:16px;">从心理学到HR</h3>
+        <p style="font-size:14px;color:var(--text2);line-height:2;margin-bottom:20px;">
+          应用心理学背景赋予我对"人"的深度理解——从人才评估、用户调研到数据分析。
+        </p>
+        <p style="font-size:14px;color:var(--text2);line-height:2;margin-bottom:20px;">
+          从猎头实习生到安克创新招聘实习，我经历了<strong style="color:var(--text)">招聘执行→体系搭建→数据驱动→AI赋能</strong>的完整成长路径。
+        </p>
+        <p style="font-size:14px;color:var(--text2);line-height:2;">
+          我相信好的HR不只是"招人"，而是用系统化思维和数据能力，让每一次人才决策都有据可依。
+        </p>
+        <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="padding:6px 16px;background:rgba(108,99,255,0.1);border-radius:8px;font-size:12px;color:var(--accent);">招聘全流程</span>
+          <span style="padding:6px 16px;background:rgba(0,210,255,0.1);border-radius:8px;font-size:12px;color:var(--accent2);">人才寻访</span>
+          <span style="padding:6px 16px;background:rgba(255,107,107,0.1);border-radius:8px;font-size:12px;color:var(--accent3);">数据分析</span>
+          <span style="padding:6px 16px;background:rgba(255,193,7,0.1);border-radius:8px;font-size:12px;color:#ffc107;">薪酬谈判</span>
+          <span style="padding:6px 16px;background:rgba(76,175,80,0.1);border-radius:8px;font-size:12px;color:#4caf50;">AI工具应用</span>
+          <span style="padding:6px 16px;background:rgba(156,39,176,0.1);border-radius:8px;font-size:12px;color:#9c27b0;">项目管理</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="timeline-section reveal">
+  <div class="section-label">02 / Timeline</div>
+  <div class="section-title">经历 <span class="gradient">时间线</span></div>
+  <div class="timeline-container">
+    <div class="timeline-col">
+      <div class="timeline-col-title intern">实习经历</div>
+      <div class="timeline-line intern"></div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card" onclick="this.classList.toggle('open')">
+          <div class="tl-top">
+            <span class="tl-date">2021.09 - 2022.09</span>
+            <span class="tl-company">企邦人力资源</span>
+            <span class="tl-role">猎头实习生</span>
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag">人才寻访</span>
+            <span class="tl-tag">电销/零售行业</span>
+          </div>
+          <div class="tl-expand-hint">点击展开详情 →</div>
+          <div class="tl-detail">
+            <div class="tl-detail-inner">
+              <h4>工作内容</h4>
+              <ul>
+                <li>负责电销/零售类销售岗位全周期寻聘</li>
+                <li>通过猎聘、无忧精英等渠道日均筛选50+份简历，电话沟通20+位候选人</li>
+                <li>成功推荐15份匹配简历至客户公司，最终助力5人成功入职（转化率33%）</li>
+              </ul>
+              <h4>成长收获</h4>
+              <ul>
+                <li>第一份HR实习，建立了招聘基础认知</li>
+                <li>参与校企联合定制培训，系统学习人才评估模型</li>
+                <li>核心技能：关键词匹配、简历筛选、电话沟通</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card" onclick="this.classList.toggle('open')">
+          <div class="tl-top">
+            <span class="tl-date">2024.03 - 2024.06</span>
+            <span class="tl-company">广州职行职业规划</span>
+            <span class="tl-role">运营实习生</span>
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag">小红书运营</span>
+            <span class="tl-tag">私域社群</span>
+          </div>
+          <div class="tl-expand-hint">点击展开详情 →</div>
+          <div class="tl-detail">
+            <div class="tl-detail-inner">
+              <h4>小红书账号运营</h4>
+              <ul>
+                <li>以"同龄人"视角独立运营求职主题账号，分享求职经验、踩坑日常、成长感悟</li>
+                <li>每周高频更新6篇笔记，累计产出50+篇内容</li>
+                <li>单篇平均阅读量5k+，最高8000+阅读</li>
+                <li>成功将50+名目标用户从公域引流至私域，引流转化率超10%</li>
+              </ul>
+              <h4>社群运营</h4>
+              <ul>
+                <li>独立策划并主持每周主题社群活动：简历诊所、求职焦虑缓解课程等</li>
+                <li>每周覆盖100名以上用户，活动满意度达95%（通过满意度量表衡量）</li>
+                <li>私域群约300人，基于群聊关键词定位关注点，收集需求后设计活动</li>
+              </ul>
+              <h4>收获</h4>
+              <ul>
+                <li>从求职者视角深入了解校招焦虑点和需求</li>
+                <li>提升了内容运营和用户运营能力</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card" onclick="this.classList.toggle('open')">
+          <div class="tl-top">
+            <span class="tl-date">2024.11 - 2025.05</span>
+            <span class="tl-company">影石 Insta360</span>
+            <span class="tl-role">招聘实习生</span>
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag">全流程招聘</span>
+            <span class="tl-tag">数据驱动</span>
+            <span class="tl-tag">薪酬谈判</span>
+            <span class="tl-tag">竞企分析</span>
+          </div>
+          <div class="tl-expand-hint">点击展开详情 →</div>
+          <div class="tl-detail">
+            <div class="tl-detail-inner">
+              <h4>招聘交付</h4>
+              <ul>
+                <li>完成研发/市场/销售/财务等团队全流程招聘（需求对接→Offer闭环）</li>
+                <li>独立对接800+候选人，其中1/3为主动sourcing，推进95%面试按时完成</li>
+                <li>Cold Call/保温沟通激活300+被动候选人，转化率约60%</li>
+                <li>主持20+场HR终面评估，主导12场薪酬谈判，Offer接受率90%</li>
+              </ul>
+              <h4>数据驱动提效</h4>
+              <ul>
+                <li>搭建招聘数据看板，追踪各环节转化率，推动解决流程卡点</li>
+                <li>基于分析调整搜寻策略，目标岗位简历推荐成功量提升30%</li>
+              </ul>
+              <h4>经典Case：Unity3D岗位招聘破局</h4>
+              <ul>
+                <li><strong>问题：</strong>市面流通人选少，几乎无人漏斗到HR面</li>
+                <li><strong>诊断：</strong>1) 简历筛选通过率低 2) 一二面面试官口径/标准不一致</li>
+                <li><strong>行动：</strong>迅速拉齐业务，过简历挖掘隐性关键点（如U3D行业差异）；拉出面评，沟通两位面试官矛盾点，统一口径，让一二面关注深度不同但标准一致</li>
+                <li><strong>结果：</strong>漏斗打通，成功找到合适人选推进到HR面</li>
+              </ul>
+              <h4>竞企人才寻访</h4>
+              <ul>
+                <li>完成3家竞企目标人才定向寻访（猎聘），用AI辅助简历阅读、分类和关键词提取</li>
+                <li>按学历、职级、岗位、工作年限等维度分层，输出细分领域人才储备简报</li>
+              </ul>
+              <div class="tl-metrics">
+                <div class="tl-metric"><div class="num">800+</div><div class="label">对接候选人</div></div>
+                <div class="tl-metric"><div class="num">90%</div><div class="label">Offer接受率</div></div>
+                <div class="tl-metric"><div class="num">+30%</div><div class="label">推荐成功率提升</div></div>
+                <div class="tl-metric"><div class="num">60%</div><div class="label">被动候选人转化率</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item current">
+        <div class="tl-dot"></div>
+        <div class="tl-card" onclick="this.classList.toggle('open')">
+          <div class="tl-top">
+            <span class="tl-date" style="background:rgba(0,210,255,0.15);color:var(--accent2);">2025.03 - 至今</span>
+            <span class="tl-company">安克创新 Anker</span>
+            <span class="tl-role">招聘实习生</span>
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag" style="background:rgba(0,210,255,0.12);border-color:rgba(0,210,255,0.3);">独立负责</span>
+            <span class="tl-tag" style="background:rgba(0,210,255,0.12);border-color:rgba(0,210,255,0.3);">体系搭建</span>
+            <span class="tl-tag" style="background:rgba(0,210,255,0.12);border-color:rgba(0,210,255,0.3);">多部门协同</span>
+            <span class="tl-tag" style="background:rgba(0,210,255,0.12);border-color:rgba(0,210,255,0.3);">AI测评</span>
+          </div>
+          <div class="tl-expand-hint">点击展开详情 → 详见下方「安克专区」</div>
+          <div class="tl-detail">
+            <div class="tl-detail-inner">
+              <p style="font-size:13px;color:var(--accent2);margin-bottom:12px;font-style:italic;">详见下方「安克专区」完整数据看板</p>
+              <h4>Phase 1: Landing（第1个月）</h4>
+              <ul>
+                <li>承接薪酬COE、招聘HR、HRBP、海外Payroll、招聘外包等岗位</li>
+                <li>熟悉流程和梳理工作思路，推进1位海外Payroll人选至薪酬方案沟通阶段</li>
+              </ul>
+              <h4>Phase 2: 独立Owner（第2个月起）</h4>
+              <ul>
+                <li>因组内变动，承接原正职+外包的全部岗位，独立负责财务/财经/PA/法务多部门</li>
+                <li>承接后第一周快速梳理岗位+学习部门知识，与BP、业务紧密沟通</li>
+                <li>仅第三周即发出一个空缺已久的CN财经BP Offer</li>
+                <li>目前还有供应链财经BP在薪酬收集阶段</li>
+              </ul>
+              <h4>核心突破</h4>
+              <ul>
+                <li>从"打电话"和协助推进的角色，真正成长为独立Owner</li>
+                <li>直接与部门C1、C2、BP等层级协作，收到业务侧较高评价</li>
+                <li>从0搭建5模块联动的数字化招聘管理系统</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-col">
+      <div class="timeline-col-title project">科研项目</div>
+      <div class="timeline-line project"></div>
+
+      <div class="tl-item project-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card" onclick="this.classList.toggle('open')">
+          <div class="tl-top">
+            <span class="tl-date">2023.10 - 2024.09</span>
+            <span class="tl-company">国家脑计划子项目</span>
+            <span class="tl-role">项目负责人</span>
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag">国家级项目</span>
+            <span class="tl-tag">全国30+城市</span>
+            <span class="tl-tag">2万份数据</span>
+          </div>
+          <div class="tl-expand-hint">点击展开详情 →</div>
+          <div class="tl-detail">
+            <div class="tl-detail-inner">
+              <h4>项目背景</h4>
+              <ul>
+                <li>国家级脑计划子项目，为小学儿童开发标准化阅读能力测验</li>
+                <li>因疫情+上级原因搁置，重启时距截止仅剩数月，需极限周期内完成</li>
+              </ul>
+              <h4>核心工作</h4>
+              <ul>
+                <li>从零招募、面试并选拔100+成员构建专业施测团队，设计并实施多次培训</li>
+                <li>策划并执行全国大规模数据采集，覆盖30+城市、50+所小学</li>
+                <li>回收并清洗近2万份有效数据（异常值处理+缺失值插补）</li>
+                <li>使用SPSS/R进行项目分析、信效度检验、DIF分析及题目质量评估</li>
+                <li>参与制定最终常模标准</li>
+              </ul>
+              <div class="tl-metrics">
+                <div class="tl-metric"><div class="num">30+</div><div class="label">覆盖城市</div></div>
+                <div class="tl-metric"><div class="num">50+</div><div class="label">合作学校</div></div>
+                <div class="tl-metric"><div class="num">100+</div><div class="label">团队成员</div></div>
+                <div class="tl-metric"><div class="num">2万</div><div class="label">有效数据</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item project-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card" onclick="this.classList.toggle('open')">
+          <div class="tl-top">
+            <span class="tl-date">2023.11 - 2025.05</span>
+            <span class="tl-company">老漂族积极老化心理研究</span>
+            <span class="tl-role">项目负责人</span>
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag">国家社科基金</span>
+            <span class="tl-tag">量表开发</span>
+            <span class="tl-tag">与影石实习并行</span>
+          </div>
+          <div class="tl-expand-hint">点击展开详情 →</div>
+          <div class="tl-detail">
+            <div class="tl-detail-inner">
+              <h4>项目背景</h4>
+              <ul>
+                <li>关注跟随子女来到新城市定居的老年人群的积极老化水平</li>
+                <li>该群体特殊，且积极心理老化概念在国内尚无统一定义和量表</li>
+              </ul>
+              <h4>核心工作</h4>
+              <ul>
+                <li>独立主导20+场半结构式深度访谈，提炼核心要素</li>
+                <li>从0到1完成测量量表的初步开发与设计</li>
+                <li>线下回收1000+有效问卷，辅助老年用户填写</li>
+                <li>SPSS/Python进行项目分析、信效度检验、EFA/CFA</li>
+              </ul>
+              <div class="tl-metrics">
+                <div class="tl-metric"><div class="num">20+</div><div class="label">深度访谈</div></div>
+                <div class="tl-metric"><div class="num">1000+</div><div class="label">有效问卷</div></div>
+                <div class="tl-metric"><div class="num">0→1</div><div class="label">量表开发</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="anker" class="reveal" style="padding-bottom:0;">
+  <div class="anker-section">
+    <div class="section-label">03 / Anker Innovations</div>
+    <div class="section-title" style="margin-bottom:16px;">安克 <span class="gradient">专区</span></div>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:40px;max-width:700px;">
+      入职2个月内，从Landing到独立Owner，搭建完整招聘管理系统，覆盖7个部门、23个岗位的全流程数字化管理。
+    </p>
+
+    <div class="anker-stats">
+      <div class="stat-card">
+        <div class="stat-num" data-target="23">0</div>
+        <div class="stat-label">在招岗位</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="7">0</div>
+        <div class="stat-label">覆盖部门</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="153">0</div>
+        <div class="stat-label">人选池</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="68">0</div>
+        <div class="stat-label">AI测评人次</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="3">0</div>
+        <div class="stat-label">Offer发放</div>
+      </div>
+    </div>
+
+    <div class="anker-phases">
+      <div class="phase-card">
+        <span class="phase-badge p1">PHASE 1</span>
+        <div class="phase-title">Landing & 学习</div>
+        <div class="phase-desc">
+          承接<strong>薪酬COE、招聘HR、HRBP、海外Payroll、招聘外包</strong>等岗位，熟悉安克招聘全流程和内部系统。推进<strong>1位海外Payroll人选</strong>至薪酬方案沟通阶段。同步开始搭建个人工作台系统。
+        </div>
+      </div>
+      <div class="phase-card">
+        <span class="phase-badge p2">PHASE 2</span>
+        <div class="phase-title">独立 Owner</div>
+        <div class="phase-desc">
+          承接原正职+外包全部岗位，独立负责<strong>财务/财经/PA/法务</strong>多部门。第一周快速梳理岗位，与BP和业务紧密沟通。<strong>第三周即发出空缺已久的CN财经BP Offer</strong>，目前供应链财经BP在薪酬收集阶段。收到业务侧较高评价。
+        </div>
+      </div>
+    </div>
+
+    <div class="workbench">
+      <h3>从0搭建的数字化招聘工作台</h3>
+      <p class="wb-subtitle">使用AI工具辅助搭建，历经一个月摸索迭代，实现全流程可视化、及时跟进、及时复盘、数据化管理。点击模块查看详情。</p>
+      <div class="wb-modules">
+        <div class="wb-module" onclick="showWbDetail('job')">
+          <div class="wb-module-icon">📋</div>
+          <div class="wb-module-name">岗位大盘与画像</div>
+          <div class="wb-module-desc">JD / 紧急度 / 面试官偏好</div>
+        </div>
+        <div class="wb-module" onclick="showWbDetail('candidate')">
+          <div class="wb-module-icon">👥</div>
+          <div class="wb-module-name">人选池</div>
+          <div class="wb-module-desc">153人全流程跟踪</div>
+        </div>
+        <div class="wb-module" onclick="showWbDetail('ai')">
+          <div class="wb-module-icon">🤖</div>
+          <div class="wb-module-name">AI测评</div>
+          <div class="wb-module-desc">68人次测评管理</div>
+        </div>
+        <div class="wb-module" onclick="showWbDetail('todo')">
+          <div class="wb-module-icon">✅</div>
+          <div class="wb-module-name">每日综合TODO</div>
+          <div class="wb-module-desc">任务管理与跟进</div>
+        </div>
+        <div class="wb-module" onclick="showWbDetail('dashboard')">
+          <div class="wb-module-icon"></div>
+          <div class="wb-module-name">招聘仪表盘</div>
+          <div class="wb-module-desc">数据可视化复盘</div>
+        </div>
+      </div>
+      <div class="wb-detail-panel" id="wb-detail">
+        <h4 id="wb-detail-title"></h4>
+        <div id="wb-detail-content"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="reveal" style="padding-bottom:0;">
+  <div class="skills-section">
+    <div class="section-label">04 / Skills</div>
+    <div class="section-title" style="margin-bottom:16px;">技能 <span class="gradient">雷达</span></div>
+    <div class="skills-grid">
+      <div class="radar-container">
+        <canvas id="radarChart" class="radar-chart"></canvas>
+      </div>
+      <div class="skills-list">
+        <div class="skill-category">
+          <div class="skill-category-title">招聘核心技能</div>
+          <div class="skill-tags">
+            <span class="skill-tag">全流程招聘</span>
+            <span class="skill-tag">人才寻访</span>
+            <span class="skill-tag">Cold Call</span>
+            <span class="skill-tag">薪酬谈判</span>
+            <span class="skill-tag">面试评估</span>
+            <span class="skill-tag">Offer管理</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">数据分析与工具</div>
+          <div class="skill-tags">
+            <span class="skill-tag">SPSS</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">飞书多维表格</span>
+            <span class="skill-tag">数据看板搭建</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">AI 应用</div>
+          <div class="skill-tags">
+            <span class="skill-tag">AI辅助JD分析</span>
+            <span class="skill-tag">AI简历匹配</span>
+            <span class="skill-tag">AI测评运营</span>
+            <span class="skill-tag">AI人才分析</span>
+            <span class="skill-tag">Claude</span>
+            <span class="skill-tag">安克内部Apps</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">项目管理与软技能</div>
+          <div class="skill-tags">
+            <span class="skill-tag">大型项目管理</span>
+            <span class="skill-tag">跨部门协同</span>
+            <span class="skill-tag">多线程并行</span>
+            <span class="skill-tag">共情沟通</span>
+            <span class="skill-tag">体系搭建</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section reveal">
+  <div class="section-label">05 / Contact</div>
+  <div class="section-title">联系 <span class="gradient">我</span></div>
+  <p style="font-size:15px;color:var(--text2);">期待与您交流，共同探索HR的更多可能。</p>
+  <div class="contact-links">
+    <a href="tel:13691608718" class="contact-link">
+      <div class="contact-icon">📱</div>
+      <div>
+        <div style="font-size:12px;color:var(--text2);">电话/微信</div>
+        <div>13691608718</div>
+      </div>
+    </a>
+    <a href="mailto:1146996927@qq.com" class="contact-link">
+      <div class="contact-icon">️</div>
+      <div>
+        <div style="font-size:12px;color:var(--text2);">邮箱</div>
+        <div>1146996927@qq.com</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Mira Zhang | HR Portfolio | 2025</p>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+const counters = document.querySelectorAll('.stat-num[data-target]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      let current = 0;
+      const increment = target / 60;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 20);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(el => counterObserver.observe(el));
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+const wbDetails = {
+  job: {
+    title: '岗位大盘与画像',
+    content: '<ul><li>记录所有在招岗位的JD、用人经理、紧急程度</li><li>维护面试官偏好与避坑指南</li><li>标注寻访方向（对标公司/策略）</li><li>实时更新岗位状态（招聘中/已关闭/猎头）</li><li>覆盖财务/财经/法务/风控/HR/薪酬/PA等7个部门</li></ul>'
+  },
+  candidate: {
+    title: '人选池（153人）',
+    content: '<ul><li>全流程跟踪：简历初筛→一面→二面→HR面→Offer→入职</li><li>记录每位人选的对接人、岗位、部门、来源</li><li>标注简历是否通过、当前最后阶段、最新进展</li><li>支持按部门/岗位/状态筛选查看</li><li>关联AI测评记录据点</li></ul>'
+  },
+  ai: {
+    title: 'AI测评管理（68人次）',
+    content: '<ul><li>发送AI测评邀请并跟进完成情况</li><li>记录测评结论：优秀通过/合格通过/不通过/未做</li><li>辅导人选完成测评，记录辅导情况</li><li>测评结果与招聘决策联动</li><li>当前通过率34%，为业务面提供前置筛选</li></ul>'
+  },
+  todo: {
+    title: '每日综合TODO',
+    content: '<ul><li>每日任务清单，标注是否完成</li><li>关联具体人选和岗位</li><li>支持 recurring 任务（如每天检查简历查重）</li><li>备注栏记录处理结果和下一步行动</li><li>保持工作节奏，确保无遗漏跟进</li></ul>'
+  },
+  dashboard: {
+    title: '招聘仪表盘',
+    content: '<ul><li>总候选人105人，进行中32人</li><li>整体淘汰66人，面试Offer转化率10%</li><li>淘汰分布：初筛15 → 测评18 → 业务面11 → Offer2 → 放弃20</li><li>AI测评通过率34%</li><li>每周更新，支持趋势分析</li></ul>'
+  }
+};
+
+function showWbDetail(key) {
+  document.querySelectorAll('.wb-module').forEach(m => m.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const panel = document.getElementById('wb-detail');
+  const title = document.getElementById('wb-detail-title');
+  const content = document.getElementById('wb-detail-content');
+  title.textContent = wbDetails[key].title;
+  content.innerHTML = wbDetails[key].content;
+  panel.classList.add('visible');
+}
+
+// Radar Chart
+const canvas = document.getElementById('radarChart');
+const ctx = canvas.getContext('2d');
+const dpr = window.devicePixelRatio || 1;
+canvas.width = 320 * dpr;
+canvas.height = 320 * dpr;
+ctx.scale(dpr, dpr);
+
+const labels = ['招聘全流程', '数据分析', 'AI应用', '项目管理', '沟通协作', '快速学习'];
+const data = [90, 85, 80, 88, 92, 85];
+const cx = 160, cy = 160, maxR = 120;
+const levels = 5;
+
+function drawRadar() {
+  ctx.clearRect(0, 0, 320, 320);
+  
+  for (let i = 1; i <= levels; i++) {
+    const r = (maxR / levels) * i;
+    ctx.beginPath();
+    for (let j = 0; j <= labels.length; j++) {
+      const angle = (Math.PI * 2 / labels.length) * j - Math.PI / 2;
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+      if (j === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+  
+  for (let j = 0; j < labels.length; j++) {
+    const angle = (Math.PI * 2 / labels.length) * j - Math.PI / 2;
+    const x = cx + maxR * Math.cos(angle);
+    const y = cy + maxR * Math.sin(angle);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+  
+  ctx.beginPath();
+  for (let j = 0; j <= labels.length; j++) {
+    const idx = j % labels.length;
+    const angle = (Math.PI * 2 / labels.length) * idx - Math.PI / 2;
+    const r = (data[idx] / 100) * maxR;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (j === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(108,99,255,0.2)';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(108,99,255,0.8)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  
+  for (let j = 0; j < labels.length; j++) {
+    const angle = (Math.PI * 2 / labels.length) * j - Math.PI / 2;
+    const r = (data[j] / 100) * maxR;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#6c63ff';
+    ctx.fill();
+  }
+  
+  ctx.font = '12px -apple-system, sans-serif';
+  ctx.fillStyle = '#9898b0';
+  ctx.textAlign = 'center';
+  for (let j = 0; j < labels.length; j++) {
+    const angle = (Math.PI * 2 / labels.length) * j - Math.PI / 2;
+    const r = maxR + 24;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    ctx.fillText(labels[j], x, y + 4);
+  }
+}
+
+drawRadar();
+</script>
+</body>
+</html>
